@@ -17,6 +17,26 @@ library.add(
   faSignOutAlt,
   faEllipsisV
 )
+
+import { firestorePlugin } from 'vuefire'          
+import firebase from 'firebase'     
+import 'firebase/firestore'
+
+Vue.use(firestorePlugin)
+
+firebase.initializeApp({                
+  apiKey: "AIzaSyC2mX98pbfKjSKj0e9V001AUPxuz98I2wc",
+  authDomain: "firstproject-460b2.firebaseapp.com",
+  databaseURL: "https://firstproject-460b2.firebaseio.com",
+  projectId: "firstproject-460b2",
+  storageBucket: "firstproject-460b2.appspot.com",
+  messagingSenderId: "700969902108",
+  appId: "1:700969902108:web:54fe61fa4082b1d4923fd9"
+})
+
+export const db = firebase.firestore()
+export const auth = firebase.auth()
+// ここまで追加
 //アイコンを表示するためにFontAwesomeIconをインポートしfaで呼べるよう設定
 Vue.component('fa', FontAwesomeIcon)
 
