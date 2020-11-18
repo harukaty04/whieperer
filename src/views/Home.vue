@@ -1,30 +1,29 @@
+<!-- Home.vue -->
+
 <template>
-  
-    <div class="home">
+  <div class="home">
     <div class="list">
-  <Item 
+      
+        <Item 
         v-for="whisper in orderBy(whispers,'date',-1)"
         :key="whisper.id"
         :id="whisper.id"
         :uid="whisper.uid" 
       />
-    </div> 
+     
+    </div>
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import Item from '@/components/Item.vue'
-import { db } from '../main'
 
-//vuew-filterを使用するために追加
+import Item from '@/components/Item.vue' 
+
+import { db } from '../main'
 import Vue2Filters from 'vue2-filters'
 
 export default {
   name: 'home',
-  components: {
-    
-  },
   data () {
     return {
       whispers: []
@@ -34,12 +33,10 @@ export default {
     return {
       whispers: db.collection('whispers')
     }
-  },  
+  },
   components: {
     Item
   },
-  mixins: [Vue2Filters.mixin]
+ mixins: [Vue2Filters.mixin]
 }
 </script>
-
-<style lang="stylus"scoped>
