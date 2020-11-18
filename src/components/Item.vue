@@ -1,11 +1,11 @@
+<!--Item.vue-->
+
 <template>
   
-    <div class="item">
-    
+    <li class="item">
+
         <div class="user-box">
-          <div 
-            class="avatar"
-            :style="'background-image: url('+url.photoURL+')'">
+          <div class="avatar" :style="'background-image: url('+url.photoURL+')'">
           </div>
           
           <p class="user-name">{{user.name}}</p>
@@ -14,8 +14,6 @@
         </div>
 
       </li>
-    </div> 
-  </div>
 </template>
 
 <script>
