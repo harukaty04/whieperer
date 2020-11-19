@@ -6,7 +6,11 @@
     </router-link>
    
    <div v-if="currentUser"class="bts">
+
+   <router-link :to="'/user/'+currentUser.uid">
    <button :style="'background-image: url('+currentUser.photoURL+')'"></button>
+   </router-link>
+
    <button>
     <fa icon="sign-out-alt" @click="signOut" />
    </button>
@@ -63,8 +67,9 @@ export default {
       const provider = new firebase.auth.GoogleAuthProvider()
       auth.signInWithPopup(provider)
       .then((result) => {
+        this.$router.push('/user/'+result.user.uid)
+        
         alert('Hello, '+result.user.displayName+'!')
-
         this.createUser(result.user)
 
       })
@@ -77,7 +82,7 @@ export default {
         'email':user.email
       }, { merge: true })
     },
-    
+
     signOut () {
       if (window.confirm('Are You Sure to Sign Out?')) {
         auth.signOut()
