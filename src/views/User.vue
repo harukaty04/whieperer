@@ -2,19 +2,24 @@
 
 <script>
 import { db } from '../main'
+
+import { auth } from '../main'
 import firebase from 'firebase'
 import Item from '@/components/Item' 
 import Vue2Filters from 'vue2-filters' 
+import Editor from '@/components/Editor'
 
 
 export default {
     components: {
-    Item
+    Item,
+    Editor 
   },
   data () {
     return {
       user: {}
       myWhispers: [] 
+       currentUser: {} 
     }
   },
   firestore () {
@@ -23,6 +28,11 @@ export default {
       myWhispers: db.collection('whispers').where('uid','==',this.$route.params.uid) 
     }
   },
+  created () {
+    auth.onAuthStateChanged(user => {
+      this.currentUser = user
+    })
+    ]
   mixins: [Vue2Filters.mixin]
 }
 </script>
@@ -38,6 +48,9 @@ export default {
       </div>
     </div>
     <div class="list">
+
+    <Editor :currentUser="currentUser"/>
+
       <Item 
         v-for="whisper in orderBy(myWhispers,'date',-1)"
         :key="whisper.id" 
@@ -45,7 +58,7 @@ export default {
         :uid="whisper.uid" 
       />
     </div>
-    
+
   </div>
 </template>
 
