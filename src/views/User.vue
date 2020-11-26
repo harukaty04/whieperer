@@ -17,14 +17,14 @@ export default {
   },
   data () {
     return {
-      user: {}
-      myWhispers: [] 
+      user: {},
+      myWhispers: [] ,
        currentUser: {} 
     }
   },
   firestore () {
     return {
-      user: db.collection('users').doc(this.$route.params.uid)
+      user: db.collection('users').doc(this.$route.params.uid),
       myWhispers: db.collection('whispers').where('uid','==',this.$route.params.uid) 
     }
   },
